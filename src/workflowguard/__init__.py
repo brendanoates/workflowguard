@@ -26,6 +26,8 @@ class FlowUnit(object):
         Keyword arguments:
         state -- initial state
         """
+        self.args = args
+        self.kwargs = kwargs
         self.name = name
         self.state = state
 
@@ -36,8 +38,6 @@ class Action(object):
     An instance of this class should be created for each action that is required by the system. An action carries out
     processing on a FlowUnit instance and is what causes the State instance of a FlowUnit instance to change.
     """
-
-
     def __init__(self, name, action, *args, **kwargs):
         """Create an instance of Action
         Arguments:
@@ -45,6 +45,8 @@ class Action(object):
         Keyword arguments:
         action -- the function that will be performed when this action is called
         """
+        self.args = args
+        self.kwargs = kwargs
         self.name = name
         self._action = action
         pass
@@ -149,8 +151,8 @@ class Transition(object):
 
 class Transitions(object):
     """
-    States class
-    Holds a set of states
+    Transitions class
+    Holds a set of Transition
     """
     def __init__(self, to_add=None):
         if not to_add:
